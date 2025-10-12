@@ -1,13 +1,12 @@
 version: "3.9"
 
 services:
-
   rabbitmq:
     image: rabbitmq:3-management
     container_name: rabbitmq
     restart: always
     ports:
-      - "5672:5672"   # AMQP protocol
+      - "5672:5672" # AMQP protocol
       - "15672:15672" # Management UI
     environment:
       RABBITMQ_DEFAULT_USER: guest
@@ -46,9 +45,8 @@ services:
     image: supabase_user_eieimarketplace
     container_name: eieimarketplace-user-management
     restart: always
-    environment:
-      SUPABASE_DB_URL: ${SUPABASE_DB_URL}
-      RABBITMQ_URL: ${RABBITMQ_URL}
+    env_file:
+      - .env
     ports:
       - "7001:7001"
     depends_on:
@@ -64,5 +62,3 @@ services:
     ports:
       - "50051:50051"
       - "7002:7002"
-    volumes:
-      - ./app:/app
