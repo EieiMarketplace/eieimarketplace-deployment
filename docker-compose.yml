@@ -62,3 +62,12 @@ services:
     ports:
       - "50051:50051"
       - "7002:7002"
+  eieimarketplace-market-ui:
+    build:
+      context: ../frontend/eieimarketplace-ui
+      dockerfile: Dockerfile
+    container_name: eieimarketplace-market-management-ui
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
